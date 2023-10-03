@@ -32,7 +32,7 @@
                     @foreach($user as $users)
                         <tr>
                             <td>
-
+                                <img src="{{ asset('storage').'/'. $users->image}}" class="img-fluid img-thumbnail"  width="50px" high="50px">
                             </td>
                             <td>{{$users->id}}</td>
                             <td>{{$users->name}}</td>

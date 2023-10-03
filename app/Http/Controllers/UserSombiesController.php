@@ -44,6 +44,7 @@ class UserSombiesController extends Controller
                 "email" => $user["email"],
                 "password" => $user["password"],
                 "dateZ" => now(), //para la fecha
+                "image"   => $media["image"],
             ]);
 
         if ($request->control=='api'){
