@@ -30,7 +30,6 @@ class UserSombiesController extends Controller
                 "name" => "required",
                 "email" => "required|string|email",
                 "password" => "required",
-                "image" => "required",
 
             ]);
 
