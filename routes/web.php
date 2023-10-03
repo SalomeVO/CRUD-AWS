@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('UserZombie/viewZombie');
+    return view('UserZombie/home');
 });
 
 //Visualizar la lista de usuario
