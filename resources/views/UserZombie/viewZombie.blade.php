@@ -89,7 +89,7 @@
         <script>
             Swal.fire({
                 icon: 'success',
-                title: 'Empleado Modificado',
+                title: 'Usuario Modificado',
                 showConfirmButton: false,
                 timer: 1500
             })
