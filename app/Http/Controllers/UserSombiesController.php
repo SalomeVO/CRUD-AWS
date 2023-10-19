@@ -117,4 +117,21 @@ class UserSombiesController extends Controller
             'Eliminado exitosamente',
         ]);
     }
+
+    //para la autencicacion en mi android
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (auth('sanctum')->attempt($credentials)) {
+            $user = auth('sanctum')->user();
+            return response()->json([
+                'message' => 'Inicio de sesión exitoso',
+                'user' => $user,
+            ]);
+        } else {
+            return response()->json(['message' => 'Credenciales incorrectas'], 401);
+        }
+    }
+
 }
