@@ -29,4 +29,5 @@ Route::post('/editApi/{id}', [UserSombiesController::class, 'editUserApi'])->nam
 Route::delete('/delateApi/{id}', [UserSombiesController::class,'destroyUser'])->name('api-destroyUser');
 
 //API-para el login de android
-Route::post('/login', 'AuthController@login');
+Route::post('/login', [UserSombiesController::class, 'login'])->name('api-login');
+
