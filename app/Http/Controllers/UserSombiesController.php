@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\user_sombies;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class UserSombiesController extends Controller
@@ -123,15 +124,18 @@ class UserSombiesController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        if (auth('sanctum')->attempt($credentials)) {
-            $user = auth('sanctum')->user();
+        $user = user_sombies::where('email', $credentials['email'])
+            ->where('password', $credentials['password'])
+            ->first();
+
+        if ($user) {
+            Auth::guard('web')->login($user); // Establece la sesión
             return response()->json([
                 'message' => 'Inicio de sesión exitoso',
                 'user' => $user,
             ]);
         } else {
-            return response()->json(['message' => 'Credenciales incorrectas'], 401);
+            return response()->json(['message' => 'Inicio de sesión fallido'], 401);
         }
     }
-
 }
