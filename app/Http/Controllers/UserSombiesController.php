@@ -128,14 +128,19 @@ class UserSombiesController extends Controller
             ->where('password', $credentials['password'])
             ->first();
 
-        if ($user) {
-            Auth::guard('web')->login($user); // Establece la sesión
-            return response()->json([
-                'message' => 'Inicio de sesión exitoso',
-                'user' => $user,
-            ]);
-        } else {
+        if (!$user) {
             return response()->json(['message' => 'Inicio de sesión fallido'], 401);
         }
+
+        // Genera un token único
+        $token = bin2hex(random_bytes(16)); // Genera un token
+
+        return response()->json([
+            'message' => 'Inicio de sesión exitoso',
+            'token' => $token,
+            'Informacion del usuario' => $user,
+
+        ]);
     }
+
 }
