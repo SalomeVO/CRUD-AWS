@@ -15,18 +15,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('UserZombie/home');
+    return view('auth/login');
 });
 
 //Visualizar la lista de usuario
-Route::get('/home', [UserSombiesController::class, 'index'])->name('index');
+Route::get('/home', [UserSombiesController::class, 'index'])->name('index')->middleware('auth');;
 //Agregar usuario
 Route::get('/formUser', [UserSombiesController::class, 'createZom'])->name('createZom');
 //Guardar usuario
 Route::post('/saveUser', [UserSombiesController::class, 'saveZom'])->name('zombie.saveZom');
 //Formulario de editar
-Route::get('/edit/{id}',  [UserSombiesController::class, 'editZom'])->name('editZom');
+Route::get('/edit/{id}',  [UserSombiesController::class, 'editZom'])->name('editZom')->middleware('auth');;
 //Guardar edicion
-Route::patch('/post/{id}',[UserSombiesController::class, 'updateZom'])->name('updateZom');
+Route::patch('/post/{id}',[UserSombiesController::class, 'updateZom'])->name('updateZom')->middleware('auth');;
 //Para eliminar
-Route::delete('/delete/{id}',[UserSombiesController::class, 'destroy'])->name('deleteZom');
+Route::delete('/delete/{id}',[UserSombiesController::class, 'destroy'])->name('deleteZom')->middleware('auth');;
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

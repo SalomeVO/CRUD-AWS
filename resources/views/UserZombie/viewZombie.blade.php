@@ -1,4 +1,4 @@
-@extends('layouts.base') <!--para heredar de base-->
+@extends('layouts.app') <!--para heredar de base-->
 @section('title', 'Lista') <!--nombre pagina, nombre de seccion-->
 @section('content')
 <div class="container mt-5">
