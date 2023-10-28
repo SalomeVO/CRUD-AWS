@@ -37,6 +37,9 @@ class UserSombiesController extends Controller
             //Guardar la foto
             if ($request->hasFile('image')) {
                 $media['image'] = $request->file("image")->store('uploads', 'public');
+            }else{
+                // Si no se proporciona una imagen, establece la imagen por defecto
+                $media['image'] = 'uploads/pfVyZw7OrptLM7yIUcLUT7NHeGJuCwOjhsqVCtGN.png';
             }
 
             user_sombies::create([
